@@ -1,9 +1,12 @@
 import Fastify from 'fastify';
-import CorsPlugin from 'fastify-cors';
-import FastifySwagger from 'fastify-swagger';
 import PointOfView from 'point-of-view';
 import pageRoute from './controller/page';
 import apiRoute from './controller/api';
+// @ts-ignore
+import CorsPlugin from 'fastify-cors';
+import auth from './middleware/auth';
+
+const SERVER_PORT = 4000;
 
 const fastify = Fastify({ logger: true });
 
@@ -11,7 +14,7 @@ const fastify = Fastify({ logger: true });
 fastify
   .register(CorsPlugin)
   .register(PointOfView, { engine: { ejs: require('ejs') } })
-  .register(FastifySwagger);
+  .register(auth);
 
 // route
 fastify
@@ -32,7 +35,7 @@ fastify.setErrorHandler((error, _, reply) => {
 // Run the server!
 (async () => {
   try {
-    await fastify.listen(4000);
+    await fastify.listen(SERVER_PORT);
   } catch (e) {
     fastify.log.error(e);
     process.exit(1);

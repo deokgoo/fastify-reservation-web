@@ -1,17 +1,12 @@
-import { FastifyInstance } from "fastify";
-import chalk from 'chalk'
-import Fastify from "fastify";
+import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
+import chalk from 'chalk';
 
-const pageRoute = (fastify: FastifyInstance, opt, next) => {
-  fastify.use((req, _, next) => {
-    const path: string = req.path;
-
-    if(path.startsWith('/admin')) {
-      // need admin permission
-    }
-
-    next();
-  });
+const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: () => void) => {
+  fastify
+    .decorate('verifyAdmin', (req: FastifyRequest, reply: FastifyReply, done: () => void) => {
+      console.log(chalk.bgBlueBright(req.routerPath));
+      done();
+    })
 
   // 대여 페이지
   fastify.get("/", async (_, reply) => {

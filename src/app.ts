@@ -1,6 +1,6 @@
 import Fastify from 'fastify';
 import CorsPlugin from 'fastify-cors';
-import FastifyExpress from 'fastify-express';
+import FastifySwagger from 'fastify-swagger';
 import PointOfView from 'point-of-view';
 import pageRoute from './controller/page';
 import apiRoute from './controller/api';
@@ -8,25 +8,33 @@ import apiRoute from './controller/api';
 const fastify = Fastify({ logger: true });
 
 // reigster Plugins
-fastify.register(CorsPlugin);
-fastify.register(FastifyExpress);
-fastify.register(PointOfView, {
-  engine: {
-    ejs: require('ejs'),
-  },
-});
+fastify
+  .register(CorsPlugin)
+  .register(PointOfView, { engine: { ejs: require('ejs') } })
+  .register(FastifySwagger);
 
 // route
-fastify.register(pageRoute, { prefix: '' });
-// fastify.register(apiRoute, { prefix: '/api' });
+fastify
+  .register(pageRoute, { prefix: '' })
+  .register(apiRoute, { prefix: '/api' });
+
+// error handler
+fastify.setErrorHandler((error, _, reply) => {
+  const statusCode = error.statusCode || 500;
+  const message = error.message || 'INTERNAL_SERVER_ERROR';
+
+  reply.code(statusCode).send({
+    statusCode,
+    message,
+  });
+});
 
 // Run the server!
-const start = async () => {
+(async () => {
   try {
-    await fastify.listen(3000)
-  } catch (err) {
-    fastify.log.error(err)
-    process.exit(1)
+    await fastify.listen(4000);
+  } catch (e) {
+    fastify.log.error(e);
+    process.exit(1);
   }
-}
-start();
+})();

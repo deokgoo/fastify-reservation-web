@@ -5,8 +5,7 @@ import {
   FastifyReply,
   FastifyPluginOptions,
 } from 'fastify';
-// @ts-ignore
-import jwt from 'fastify-jwt';
+import jwt from '@fastify/jwt';
 import chalk from 'chalk';
 
 export default fp(
@@ -18,9 +17,8 @@ export default fp(
       'auth',
       async (request: FastifyRequest, reply: FastifyReply) => {
         try {
-          console.log(chalk.bgGreenBright('test jwt'));
-          // @ts-ignore
           await request.jwtVerify();
+          console.log(chalk.bgGreenBright('admin access page'));
         } catch (err) {
           reply.send(err);
         }

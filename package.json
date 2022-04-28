@@ -11,12 +11,12 @@
     "type-check:watch": "npm run type-check -- --watch"
   },
   "dependencies": {
+    "@fastify/cors": "^7.0.0",
+    "@fastify/jwt": "^5.0.0",
     "babel-loader": "^8.2.5",
     "chalk": "^5.0.1",
     "ejs": "^3.1.7",
     "fastify": "^3.28.0",
-    "fastify-cors": "^6.1.0",
-    "fastify-jwt": "^4.2.0",
     "point-of-view": "^5.2.0"
   },
   "repository": {
@@ -39,7 +39,6 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@types/ejs": "^3.1.0",
-    "@types/fastify-cors": "^2.1.0",
     "ejs-loader": "^0.5.0",
     "html-loader": "^3.1.0",
     "nodemon-webpack-plugin": "^4.7.1",

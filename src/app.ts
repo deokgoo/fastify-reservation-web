@@ -2,8 +2,7 @@ import Fastify from 'fastify';
 import PointOfView from 'point-of-view';
 import pageRoute from './controller/page';
 import apiRoute from './controller/api';
-// @ts-ignore
-import CorsPlugin from 'fastify-cors';
+import CorsPlugin from '@fastify/cors';
 import auth from './middleware/auth';
 
 const SERVER_PORT = 4000;

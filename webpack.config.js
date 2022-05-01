@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
@@ -16,6 +17,14 @@ module.exports = {
   },
   plugins: [
     new NodemonPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'static',
+          to: 'static',
+        }
+      ],
+    })
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js', '.json' ],

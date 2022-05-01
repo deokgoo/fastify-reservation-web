@@ -1,7 +1,21 @@
 :root {
   --size_btn: 120px;
+  --size_font: 24px;
 }
 
 .menu-btn {
   width: var(--size_btn);
+  font-size: var(--size_font);
+  box-shadow: none;
+  border: none;
+  margin: 0 48px;
+}
+
+.menu-btn.active {
+  background-color: #a6cd48;
+}
+
+.menu-btn:hover {
+  color: white;
+  background-color: #a6cd48;
 }

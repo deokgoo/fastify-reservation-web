@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
 import FastifyStatic from '@fastify/static';
 import CorsPlugin from '@fastify/cors';
+import CookiePlugin from '@fastify/cookie';
 import PointOfView from 'point-of-view';
 import pageRoute from './controller/page';
 import apiRoute from './controller/api';
@@ -18,7 +19,11 @@ fastify
     root: path.join(__dirname, 'static'),
     prefix: '/static/',
   })
-  .register(CorsPlugin)
+  .register(CorsPlugin, {
+    origin: true,
+    credentials: true,
+  })
+  .register(CookiePlugin)
   .register(PointOfView, { engine: { ejs: require('ejs') } })
   .register(auth);
 

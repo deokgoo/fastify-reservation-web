@@ -17,10 +17,13 @@ export default fp(
       'auth',
       async (request: FastifyRequest, reply: FastifyReply) => {
         try {
-          await request.jwtVerify();
+          const { accessToken } = request.cookies;
+          
+          fastify.jwt.verify(accessToken);
+
           console.log(chalk.bgGreenBright('admin access page'));
         } catch (err) {
-          reply.send(err);
+          reply.redirect('/login');
         }
       }
     );

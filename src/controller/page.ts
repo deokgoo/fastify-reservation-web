@@ -25,6 +25,20 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     }
   );
 
+  // reservation 페이지
+  fastify.get("/reservation",
+    async (_, reply) => {
+      reply.view("/static/html/reservation.ejs");
+    }
+  );
+
+  // login 페이지
+  fastify.get("/login",
+    async (_, reply) => {
+      reply.view("/static/html/login.ejs");
+    }
+  );
+
   // amdin 페이지
   fastify.get("/admin",
     { preValidation: fastify.auth }, 

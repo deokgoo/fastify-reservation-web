@@ -1,0 +1,26 @@
+:root {
+  --size_btn: 120px;
+  --size_font: 24px;
+  --color_olive: #a6cd48;
+}
+
+.login__container {
+  margin-top: 120px;
+}
+
+.login_btn {
+  margin-top: 24px;
+  width: 100%;
+  background-color: var(--color_olive);
+  color: white;
+  font-weight: bold;
+}
+
+.login_btn:hover {
+  color: white !important;
+}
+
+.login__footer {
+  margin-top: 80px;
+  color: gray;
+}

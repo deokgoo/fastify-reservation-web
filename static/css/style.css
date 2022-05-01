@@ -1,0 +1,7 @@
+:root {
+  --size_btn: 120px;
+}
+
+.menu-btn {
+  width: var(--size_btn);
+}

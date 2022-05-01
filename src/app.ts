@@ -1,16 +1,23 @@
 import Fastify from 'fastify';
+import FastifyStatic from '@fastify/static';
+import CorsPlugin from '@fastify/cors';
 import PointOfView from 'point-of-view';
 import pageRoute from './controller/page';
 import apiRoute from './controller/api';
-import CorsPlugin from '@fastify/cors';
 import auth from './middleware/auth';
+import path from 'path';
 
 const SERVER_PORT = 4000;
 
 const fastify = Fastify({ logger: true });
 
+console.log(__dirname);
 // reigster Plugins
 fastify
+  .register(FastifyStatic, {
+    root: path.join(__dirname, 'static'),
+    prefix: '/static/',
+  })
   .register(CorsPlugin)
   .register(PointOfView, { engine: { ejs: require('ejs') } })
   .register(auth);

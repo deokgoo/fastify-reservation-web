@@ -1,4 +1,5 @@
 import { Server, IncomingMessage, ServerResponse } from 'http';
+import { Sequelize } from 'sequelize/types';
 
 declare module 'fastify' {
   export interface FastifyInstance<
@@ -9,5 +10,6 @@ declare module 'fastify' {
     db: any;
     auth: any;
     jwt: any;
+    sequelize: Sequelize;
   }
 }

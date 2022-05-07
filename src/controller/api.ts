@@ -1,4 +1,5 @@
 import { FastifyInstance } from 'fastify';
+import db from '../models';
 
 const apiRoutes = (fastify: FastifyInstance, opt: any, done: () => void) => {
   fastify.post('/login', async (req, reply) => {
@@ -25,6 +26,20 @@ const apiRoutes = (fastify: FastifyInstance, opt: any, done: () => void) => {
     reply
       .code(401)
       .send('unauthorization');
+  });
+
+  fastify.post('/device', async (req, reply) => {
+    // @ts-ignore
+    const { name, os, os_version, img_url } = req.body;
+
+    db.models.deviceInfo.create({
+      name,
+      os,
+      os_version,
+      img_url,
+    });
+
+    reply.status(200).send();
   });
 
   done();

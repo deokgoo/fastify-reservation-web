@@ -2,6 +2,8 @@ import Fastify from 'fastify';
 import FastifyStatic from '@fastify/static';
 import CorsPlugin from '@fastify/cors';
 import CookiePlugin from '@fastify/cookie';
+import FormbodyPlugin from '@fastify/formbody';
+import db from './models';
 import PointOfView from 'point-of-view';
 import pageRoute from './controller/page';
 import apiRoute from './controller/api';
@@ -12,7 +14,8 @@ const SERVER_PORT = 4000;
 
 const fastify = Fastify({ logger: true });
 
-console.log(__dirname);
+db.sequelize.sync({ force: false });
+
 // reigster Plugins
 fastify
   .register(FastifyStatic, {
@@ -23,6 +26,7 @@ fastify
     origin: true,
     credentials: true,
   })
+  .register(FormbodyPlugin)
   .register(CookiePlugin)
   .register(PointOfView, { engine: { ejs: require('ejs') } })
   .register(auth);

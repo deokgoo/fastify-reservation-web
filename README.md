@@ -35,3 +35,65 @@ npm start
 - jwt
 - webpack, babel
 - mysql
+
+## Directory
+```
+fastify-toy-rental-book
+├─ docker
+│  ├─ docker-compose.yml
+│  └─ mysql
+│     └─ docker-entrypoint-initdb.d
+│        └─ create_database_create.sh
+├─ src
+│  ├─ @types
+│  │  └─ fastify
+│  │     └─ index.d.ts
+│  ├─ db
+│  │  └─ sequelize.ts
+│  ├─ middleware
+│  │  └─ auth.ts
+│  ├─ models
+│  │  ├─ auth.ts
+│  │  ├─ device-info.ts
+│  │  ├─ index.ts
+│  │  └─ reservation.ts
+│  ├─ routes
+│  │  ├─ auth.ts
+│  │  ├─ device.ts
+│  │  ├─ page.ts
+│  │  └─ reservation.ts
+│  ├─ service
+│  │  ├─ authService.ts
+│  │  ├─ deviceinfoService.ts
+│  │  └─ resetvationService.ts
+│  └─ app.ts
+├─ static
+│  ├─ css
+│  │  ├─ bootstrap.min.css
+│  │  ├─ login.css
+│  │  └─ style.css
+│  ├─ data
+│  │  └─ list.json
+│  ├─ html
+│  │  ├─ admin.ejs
+│  │  ├─ device-add.ejs
+│  │  ├─ device-edit.ejs
+│  │  ├─ landing.ejs
+│  │  └─ login.ejs
+│  ├─ img
+│  │  ├─ .DS_Store
+│  │  ├─ device
+│  │  │  └─ sample1.png
+│  │  └─ olive_logo.png
+│  └─ js
+│     ├─ login.js
+│     └─ script.js
+├─ .babelrc
+├─ .gitignore
+├─ tsconfig.json
+├─ webpack.config.js
+├─ package-lock.json
+├─ package.json
+└─ README.md
+
+```

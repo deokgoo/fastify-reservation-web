@@ -1,4 +1,4 @@
-import { ModelCtor, Sequelize } from 'sequelize';
+import { ModelCtor, ModelOptions, Sequelize } from 'sequelize';
 import Auth from '../models/auth';
 import DeviceInfo from '../models/device-info';
 import Reservation from '../models/reservation';
@@ -19,12 +19,19 @@ const sequelize = new Sequelize('olive_reservation', 'olive', 'olive_password', 
   dialectModule: mysql2,
 });
 
+const options: ModelOptions = {
+  charset: "utf8", // 한국어 설정
+  collate: "utf8_general_ci", // 한국어 설정
+  timestamps: true, // createAt, updateAt 활성화
+  paranoid: true, // deleteAt 옵션
+}
+
 const db: Db = {
   sequelize,
   models: {
-    deviceInfo: DeviceInfo(sequelize),
-    reservation: Reservation(sequelize),
-    auth: Auth(sequelize),
+    deviceInfo: DeviceInfo(sequelize, options),
+    reservation: Reservation(sequelize, options),
+    auth: Auth(sequelize, options),
   }
 };
 

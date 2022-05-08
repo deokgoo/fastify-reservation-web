@@ -47,6 +47,22 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     }
   );
 
+  // device add 페이지
+  fastify.get("/device/add",
+    { preValidation: fastify.auth }, 
+    async (_, reply) => {
+      reply.view("/static/html/device-add.ejs");
+    }
+  );
+
+  // device add 페이지
+  fastify.get("/device/edit",
+    { preValidation: fastify.auth }, 
+    async (_, reply) => {
+      reply.view("/static/html/device-edit.ejs");
+    }
+  );
+
   done();
 }
 

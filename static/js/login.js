@@ -8,7 +8,7 @@ $loginForm.addEventListener('submit', async (e) => {
 
   const encryptedAuth = btoa(`${insertedId}:${insertedPw}`);
 
-  const token = await fetch('/api/login', {
+  const token = await fetch('/api/auth/login', {
     method: 'POST',
     mode: 'cors',
     credentials: 'include',

@@ -5,8 +5,10 @@ import CookiePlugin from '@fastify/cookie';
 import FormbodyPlugin from '@fastify/formbody';
 import db from './models';
 import PointOfView from 'point-of-view';
-import pageRoute from './controller/page';
-import apiRoute from './controller/api';
+import pageRoute from './routes/page';
+import deviceRoute from './routes/device';
+import authRoute from './routes/auth';
+import reservationRoute from './routes/reservation';
 import auth from './middleware/auth';
 import path from 'path';
 
@@ -34,7 +36,9 @@ fastify
 // route
 fastify
   .register(pageRoute, { prefix: '' })
-  .register(apiRoute, { prefix: '/api' });
+  .register(authRoute, { prefix: '/api/auth' })
+  .register(deviceRoute, { prefix: '/api/device' })
+  .register(reservationRoute, { prefix: '/api/reservation' });
 
 // error handler
 fastify.setErrorHandler((error, _, reply) => {

@@ -21,7 +21,7 @@ export default fp(
           
           fastify.jwt.verify(accessToken);
 
-          console.log(chalk.bgGreenBright('admin access page'));
+          console.log(chalk.bgGreenBright('admin access page' + new Date()));
         } catch (err) {
           reply.redirect('/login');
         }

@@ -8,7 +8,7 @@ const DeviceInfo = (sequelize: Sequelize, options: ModelOptions) => {
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     os: {
@@ -16,11 +16,11 @@ const DeviceInfo = (sequelize: Sequelize, options: ModelOptions) => {
       allowNull: false,
     },
     os_version: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(30),
       allowNull: false,
     },
     img_url: {
-      type: DataTypes.BLOB,
+      type: DataTypes.BLOB('long'),
       allowNull: true,
     },
   }, options);

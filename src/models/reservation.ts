@@ -12,7 +12,7 @@ const Reservation = (sequelize: Sequelize, options: ModelOptions) => {
       allowNull: false,
     },
     name: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(30),
       allowNull: false,
     },
     department: {

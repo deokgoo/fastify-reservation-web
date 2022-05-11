@@ -39,11 +39,11 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     }
   );
 
-  // amdin 페이지
-  fastify.get("/admin",
+  // device return 페이지
+  fastify.get("/device/return",
     { preValidation: fastify.auth }, 
     async (_, reply) => {
-      reply.view("/static/html/admin.ejs");
+      reply.view("/static/html/device-return.ejs");
     }
   );
 

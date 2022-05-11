@@ -5,6 +5,7 @@ import {
   getDevicesByName,
   deleteDeviceById,
 } from '../service/deviceinfoService';
+import chalk from 'chalk';
 
 const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
   fastify.get('', async (req, reply) => {
@@ -27,9 +28,9 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
 
     try {
       await createDevice({
-        name, 
-        os, 
-        os_version, 
+        name,
+        os,
+        os_version,
         img_url,
       });
     } catch(e) {

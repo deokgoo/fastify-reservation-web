@@ -1,34 +1,25 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
+import { getAllDeviceList } from '../service/deviceinfoService';
+import chalk from 'chalk';
 
 const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: () => void) => {
   // 대여 페이지
-  fastify.get("/" , 
-    async (_, reply) => {
-      reply.view("/static/html/landing.ejs", { 
-        rentalInfo: [
-          {
-            phoneModel: 'model1',
-            phoneName: '안드로이드1',
-            phoneOS: 'AOS',
-            status: 'ok',
-            date: '',
-          },
-          {
-            phoneModel: 'model2',
-            phoneName: '아이폰1',
-            phoneOS: 'IOS',
-            status: 'ok',
-            date: '',
-          }
-        ]
-      });
+  fastify.get("/" ,
+    async (req, reply) => {
+      // @ts-ignore
+      const { os } = req.query;
+      const allDeviceList = await getAllDeviceList(os);
+      
+      reply.view("/static/html/landing.ejs", { allDeviceList });
     }
   );
 
   // reservation 페이지
   fastify.get("/reservation",
     async (_, reply) => {
-      reply.view("/static/html/reservation.ejs");
+      const deviceList = await getAllDeviceList();
+
+      reply.view("/static/html/reservation.ejs", { deviceList });
     }
   );
 
@@ -41,8 +32,8 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
 
   // device return 페이지
   fastify.get("/device/return",
-    { preValidation: fastify.auth }, 
-    async (_, reply) => {
+    { preValidation: fastify.auth },
+    async (_, reply) => {      
       reply.view("/static/html/device-return.ejs");
     }
   );
@@ -55,10 +46,11 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     }
   );
 
-  // device add 페이지
+  // device edit 페이지
   fastify.get("/device/edit",
     { preValidation: fastify.auth }, 
     async (_, reply) => {
+
       reply.view("/static/html/device-edit.ejs");
     }
   );

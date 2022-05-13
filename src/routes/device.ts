@@ -5,7 +5,6 @@ import {
   getDevicesByName,
   deleteDeviceById,
 } from '../service/deviceinfoService';
-import chalk from 'chalk';
 
 const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
   fastify.get('', async (req, reply) => {
@@ -41,7 +40,7 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
     reply.status(201).send();
   });
 
-  fastify.delete(':id', async (req, reply) => {
+  fastify.delete('/:id', async (req, reply) => {
     // @ts-ignore
     const { id } = req.params;
     

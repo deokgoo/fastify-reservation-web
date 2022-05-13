@@ -1,5 +1,13 @@
 const $loginForm = document.querySelector('#login-form');
 
+const cookies = document.cookie.split(';');
+const accessToken = cookies.find(x => x.replace(' ', '').startsWith('accessToken'));
+if(accessToken) {
+  if(accessToken.split('=')[1]) {
+    location.replace('/device/return');
+  }
+}
+
 $loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData($loginForm);
@@ -20,5 +28,5 @@ $loginForm.addEventListener('submit', async (e) => {
   }).then(res => res.text());
 
   document.cookie = `accessToken=${token}`;
-  location.replace('/admin');
+  location.replace('/device/return');
 });

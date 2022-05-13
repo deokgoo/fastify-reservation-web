@@ -3,6 +3,17 @@ import { getReservationListBydeviceId } from './resetvationService';
 
 const { deviceInfo } = db.models;
 
+type OS = 'aos' | 'ios' | undefined;
+
+interface DeviceInfo {
+  id: string;
+  name: string;
+  os: OS;
+  os_version: string;
+  img_url: string;
+  isReturn: boolean;
+}
+
 export const createDevice = ({ name, os, os_version, img_url }: any) => {
   return deviceInfo.create({
     name,
@@ -12,17 +23,25 @@ export const createDevice = ({ name, os, os_version, img_url }: any) => {
   });
 }
 
-export const getAllDeviceList = async () => {
-  const res = [];
-  let deviceInfos = await deviceInfo.findAll();
+export const getAllDeviceList = async (os: OS): Promise<DeviceInfo[]> => {
+  const res: DeviceInfo[] = [];
+  let deviceInfos;
+
+  if(os === 'ios' || os === 'aos') {
+    deviceInfos = await deviceInfo.findAll({where: {
+      os,
+    }})
+  } else {
+    deviceInfos = await deviceInfo.findAll();
+  }
 
   deviceInfos = deviceInfos.map(x => x.dataValues);
 
   for(let i=0;i<deviceInfos.length;i++) {
     const id = deviceInfos[i].id;
     const reservationList = await getReservationListBydeviceId(id);
-    console.log('test', reservationList);
     const isReturn = !!reservationList.find(x => x.isReturn === false);
+
     res.push({
       ...deviceInfos[i],
       isReturn,

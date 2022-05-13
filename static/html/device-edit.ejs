@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
-  <script defer src="/static/js/script.js"></script>
+  <script defer src="/static/js/device-edit.js"></script>
   <title>테스트폰 대여 관리자 페이지</title>
 </head>
 <body>
@@ -42,50 +42,24 @@
                   <td>이미지</td>
                   <td>삭제</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>iOS</td>
-                  <td>iPhone 13 Pro MAX - OS 15.3</td>
-                  <td>
-                    <button>
-                      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-                    </button>
-                  </td>
-                  <td><button>삭제</button></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>AOS</td>
-                  <td>Galaxy S6 - OS 6.1</td>
-                  <td>
-                    <button>
-                      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-                    </button>
-                  </td>
-                  <td><button>삭제</button></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>iOS</td>
-                  <td>iPhone 13 Pro MAX - OS 15.3	</td>
-                  <td>
-                    <button>
-                      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-                    </button>
-                  </td>
-                  <td><button>삭제</button></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>AOS</td>
-                  <td>Galaxy Z Flip3 - OS 12	</td>
-                  <td>
-                    <button>
-                      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-                    </button>
-                  </td>
-                  <td><button>삭제</button></td>
-                </tr>
+                <% deviceList.forEach(function(deviceInfo) { %>
+                  <tr>
+                    <td><%= deviceInfo.id %></td>
+                    <td><%= deviceInfo.os %></td>
+                    <td><%= deviceInfo.name %></td>
+                    <td>
+                      <button>
+                        <input type="file" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+                      </button>
+                    </td>
+                    <td>
+                      <button class="js-delete">
+                        삭제
+                        <span class="js-delete__id" style="display: none;"><%= deviceInfo.id %></span>
+                      </button>
+                    </td>
+                  </tr>
+                <% }); %>
             </table>
             </div>
           </div>

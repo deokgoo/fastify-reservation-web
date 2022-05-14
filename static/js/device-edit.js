@@ -1,3 +1,6 @@
+const $editArr = document.querySelectorAll('.js-edit');
+const $deleteArr = document.querySelectorAll('.js-delete');
+
 const deleteData = (url) => {
   return fetch(url, {
     method: 'DELETE',
@@ -12,12 +15,18 @@ const deleteData = (url) => {
   });
 }
 
-const $deleteArr = document.querySelectorAll('.js-delete');
+$editArr.forEach(x => {
+  x.addEventListener('click', async () => {
+    const editId = x.querySelector('.js-edit__id').textContent.replaceAll(' ', '');
+  
+    location.href = `/device/edit/${editId}`;
+  })
+});
 
 $deleteArr.forEach(x => {
   x.addEventListener('click', async () => {
     const deleteId = x.querySelector('.js-delete__id').textContent.replaceAll(' ', '');
-    console.log(deleteId)
+    
     const url = `/api/device/${deleteId}`;
   
     try {
@@ -27,4 +36,4 @@ $deleteArr.forEach(x => {
       alert('unexpected error')
     }
   })
-})
+});

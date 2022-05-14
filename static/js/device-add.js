@@ -1,3 +1,8 @@
+const $form = document.querySelector('#device-info-form');
+const $chooseFile = document.querySelector('#chooseFile');
+const $img_url = document.querySelector('[name=img_url]');
+const $show = document.querySelector('.js-show');
+
 const postData = (url, data) => {
   return fetch(url, {
     method: 'POST',
@@ -13,10 +18,6 @@ const postData = (url, data) => {
   });
 }
 
-const $form = document.querySelector('#device-info-form');
-const $chooseFile = document.querySelector('#chooseFile');
-const $img_url = document.querySelector('[name=img_url]');
-
 $form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -31,6 +32,8 @@ $form.addEventListener('submit', (e) => {
       os_version: $os_version.value,
       img_url: $img_url.value,
     })
+    alert('register success');
+    location.reload();
   }catch {
     console.warn('unexpected error');
   }
@@ -41,8 +44,12 @@ $chooseFile.addEventListener('change', () => {
   const reader = new FileReader();
 
   reader.onload = (evt) => {
-    $img_url.value = evt.target.result;
+    const result = evt.target.result.replace(/\n/g,'<br />');
+    $img_url.value = result;
+
+    $show.src = $img_url.value;
   };
-  reader.readAsText(file);
+
+  reader.readAsDataURL(file, 'UTF-8');
 });
 

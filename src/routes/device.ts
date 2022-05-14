@@ -4,6 +4,7 @@ import {
   getAllDeviceList,
   getDevicesByName,
   deleteDeviceById,
+  updateDevice,
 } from '../service/deviceinfoService';
 
 const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
@@ -38,6 +39,28 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
     }
 
     reply.status(201).send();
+  });
+
+  fastify.post('/:id', async (req, reply) => {
+    // @ts-ignore
+    const { name, os, os_version, img_url } = req.body;
+    // @ts-ignore
+    const { id } = req.params;
+
+    try {
+      await updateDevice({
+        id,
+        name,
+        os,
+        os_version,
+        img_url,
+      });
+    } catch(e) {
+      console.warn(e);
+      reply.status(500).send();
+    }
+
+    reply.status(200).send();
   });
 
   fastify.delete('/:id', async (req, reply) => {

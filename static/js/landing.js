@@ -5,6 +5,8 @@ const $fitlerAll = document.querySelector('.js-filter-all');
 const $fitlerAOS = document.querySelector('.js-filter-aos');
 const $fitlerIOS = document.querySelector('.js-filter-ios');
 
+const $$btnReservation = document.querySelectorAll('.js-reservation');
+
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
@@ -34,3 +36,10 @@ if(params.os === 'aos') {
   inActiveClass($fitlerAOS);
   inActiveClass($fitlerIOS);
 }
+
+$$btnReservation.forEach(x => {
+  x.addEventListener('click', () => {
+    const id = x.dataset.id;
+    location.href = `/reservation/${id}`;
+  });
+})

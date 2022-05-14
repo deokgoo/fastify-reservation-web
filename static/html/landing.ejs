@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
-  <script defer src="/static/js/script.js"></script>
+  <script defer src="/static/js/landing.js"></script>
   <title>테스트폰 대여</title>
 </head>
 <body>
@@ -28,13 +28,13 @@
           </div>
           <div class="row mt-5" style="max-width: 1600px">
             <% allDeviceList.forEach(function(deviceInfo) { %>
-              <div class="col d-flex justify-content-center landing__card">
-                <div class="card" style="width: 18rem;">
-                  <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
+              <div class="col-3 d-flex justify-content-center landing__card mt-3">
+                <div class="card" style="width: 18rem; margin-top: 30px">
+                  <img src="<%= deviceInfo.img_url %>" class="card-img-top" alt="..." height="260px">
                   <div class="card-body">
                     <h5 class="card-title">모델명: <%= deviceInfo.name %> </h5>
                     <div class="card-text">
-                      <p>OS: <%= deviceInfo.os %></p>
+                      <p>OS: <%= deviceInfo.os %> (<%= deviceInfo.os_version %>)</p>
                       <p>
                         <% if(deviceInfo.isReturn == true){ %>
                           상태: 대여중
@@ -45,126 +45,12 @@
                       <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
                       </div>
                     <div class="d-flex w-100 justify-content-center">
-                      <a href="#" class="btn btn-primary">예약 및 대여</a>
+                      <button class="btn btn-primary mt-3 js-reservation" data-id="<%= deviceInfo.id %>">예약 및 대여</a>
                     </div>
                   </div>
                 </div>
               </div>
             <% }); %>
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-5 justify-content-center">
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex justify-content-center landing__card">
-              <div class="card" style="width: 18rem;">
-                <img src="/static/img/device/sample1.png" class="card-img-top" alt="..." height="260px">
-                <div class="card-body">
-                  <h5 class="card-title">모델명: 아이폰13 pro</h5>
-                  <p class="card-text">
-                    OS: IOS <br/>
-                    상태: 대여중 <br/>
-                    <span class="text-center w-100">(2022. 04. 30 ~ 2022. 05. 01)</span>
-                  </p>
-                  <div class="d-flex w-100 justify-content-center">
-                    <a href="#" class="btn btn-primary">예약 및 대여</a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -20,6 +20,22 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
     reply.status(201).send();
   });
 
+  fastify.post('/:deviceInfoId', async (req, reply) => {
+    // @ts-ignore
+    const { deviceInfoId } = req.params;
+    // @ts-ignore
+    const { name, department, startDate, endDate } = req.body;
+    await createReservation({
+      deviceInfoId,
+      name,
+      department,
+      startDate,
+      endDate
+    });
+
+    reply.status(201).send();
+  });
+
   fastify.get('', async (req, reply) => {
     // @ts-ignore
     const { deviceInfoId } = req.params;

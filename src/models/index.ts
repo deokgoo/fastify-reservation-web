@@ -20,6 +20,7 @@ const sequelize = new Sequelize('olive_reservation', 'olive', 'olive_password', 
 });
 
 const options: ModelOptions = {
+  underscored: true,
   charset: "utf8", // 한국어 설정
   collate: "utf8_general_ci", // 한국어 설정
   timestamps: true, // createAt, updateAt 활성화

@@ -6,6 +6,7 @@ import FormbodyPlugin from '@fastify/formbody';
 import db from './models';
 import PointOfView from 'point-of-view';
 import pageRoute from './routes/page';
+import devicePageRoute from './routes/devicePage';
 import deviceRoute from './routes/device';
 import authRoute from './routes/auth';
 import reservationRoute from './routes/reservation';
@@ -36,6 +37,7 @@ fastify
 // route
 fastify
   .register(pageRoute, { prefix: '' })
+  .register(devicePageRoute, { prefix: '/device' })
   .register(authRoute, { prefix: '/api/auth' })
   .register(deviceRoute, { prefix: '/api/device' })
   .register(reservationRoute, { prefix: '/api/reservation' });

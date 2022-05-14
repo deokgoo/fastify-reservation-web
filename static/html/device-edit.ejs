@@ -39,17 +39,18 @@
                   <td>No.</td>
                   <td>OS</td>
                   <td>디바이스명</td>
-                  <td>이미지</td>
+                  <td>편집</td>
                   <td>삭제</td>
                 </tr>
-                <% deviceList.forEach(function(deviceInfo) { %>
+                <% allDeviceList.forEach(function(deviceInfo) { %>
                   <tr>
                     <td><%= deviceInfo.id %></td>
                     <td><%= deviceInfo.os %></td>
                     <td><%= deviceInfo.name %></td>
                     <td>
-                      <button>
-                        <input type="file" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+                      <button class="js-edit">
+                        편집
+                        <span class="js-edit__id" style="display: none;"><%= deviceInfo.id %></span>
                       </button>
                     </td>
                     <td>

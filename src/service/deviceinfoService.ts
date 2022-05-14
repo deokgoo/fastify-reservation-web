@@ -3,7 +3,7 @@ import { getReservationListBydeviceId } from './resetvationService';
 
 const { deviceInfo } = db.models;
 
-type OS = 'aos' | 'ios' | undefined;
+type OS = 'aos' | 'ios';
 
 interface DeviceInfo {
   id: string;
@@ -23,7 +23,7 @@ export const createDevice = ({ name, os, os_version, img_url }: any) => {
   });
 }
 
-export const getAllDeviceList = async (os: OS): Promise<DeviceInfo[]> => {
+export const getAllDeviceList = async (os?: OS): Promise<DeviceInfo[]> => {
   const res: DeviceInfo[] = [];
   let deviceInfos;
 
@@ -51,7 +51,7 @@ export const getAllDeviceList = async (os: OS): Promise<DeviceInfo[]> => {
   return res;
 }
 
-export const getDeviceById = (id: number) => {
+export const getDeviceById = (id: number): Promise<DeviceInfo> => {
   return deviceInfo.findOne({
     where: { id }
   })
@@ -65,6 +65,19 @@ export const getDevicesByName = (query: string) => {
       }
     }
   })
+}
+
+export const updateDevice = ({ id, name, os, os_version, img_url }: any) => {
+  return deviceInfo.update({
+    name,
+    os,
+    os_version,
+    img_url,
+  }, {
+    where: {
+      id,
+    }
+  });
 }
 
 export const deleteDeviceById = (id: number) => {

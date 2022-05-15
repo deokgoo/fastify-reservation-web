@@ -5,6 +5,7 @@ const $userName = document.querySelector('#formControlInputUserName');
 const $depart = document.querySelector('#formControlInputDepart');
 const $startDate = document.querySelector('#formControlInputStartDate');
 const $endDate = document.querySelector('#formControlInputEndDate');
+const $statusNo = document.querySelector('.js-status-no');
 
 const $$startDate = document.querySelectorAll('.start-date');
 const $$endDate = document.querySelectorAll('.end-date');
@@ -24,13 +25,13 @@ const postData = (url, data) => {
   });
 }
 
-$btnReservation.addEventListener('click', (e) => {
+$btnReservation.addEventListener('click', async (e) => {
   e.preventDefault();
 
   const deviceId = $deviceId.value;
   const url = `/api/reservation/${deviceId}`;
   try {
-    postData(url, {
+    await postData(url, {
       name: $userName.value,
       department: $depart.value,
       startDate: $startDate.value,
@@ -63,3 +64,7 @@ $$endDate.forEach(x => {
 $btnHistoryBack.addEventListener('click', () => {
   location.href = '/';
 })
+
+if($statusNo) {
+  $btnReservation.setAttribute('disabled', true);
+}

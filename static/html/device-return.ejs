@@ -12,32 +12,36 @@
 <body>
   <body>
     <div class="container-fluid pb-3">
-      <div class="row mt-4 mx-3">
-        <div class="col align-self-start">
-          <div class="row w-100 justify-content-left">
-            <div class="col-6 d-flex justify-content-center">
-              <a class="btn btn-success menu-btn active" href="/device/return">반납</a>
-              <a class="btn btn-light menu-btn" href="/device/edit">디바이스 편집</a>
-              <a class="btn btn-light menu-btn" href="/device/add">디바이스 추가</a>
-            </div>
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <img src="/static/img/olive_logo.png" alt="logo" width="230px" />
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-left: 15px;">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="/device/return">반납</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/device/edit">편집</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/device/add">추가</a>
+              </li>
+            </ul>
           </div>
-        </div>
+        </nav>
       </div>
       <div class="row m-3 w-100">
         <div class="col-12">
           <div class="container-fluid d-flex flex-column align-items-center">
-            <div class="row w-100 justify-content-center">
-              <div class="col-6 d-flex justify-content-center">
-                <button class="btn-success menu-btn active">All</button>
-                <button class="btn-light menu-btn">AOS</button>
-                <button class="btn-light menu-btn">IOS</button>
-              </div>
-            </div>
             <div class="row mt-5 w-100">
               <table class="table">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">대여 번호</th>
+                    <th scope="col">디바이스 No</th>
                     <th scope="col">대여자</th>
                     <th scope="col">부서명</th>
                     <th scope="col">대여 시작 일</th>
@@ -49,6 +53,7 @@
                   <% reservationList.forEach(function(reservation) { %>
                     <tr>
                       <th scope="row"><%= reservation.id %></th>
+                      <td><%= reservation.device_info_id %></td>
                       <td><%= reservation.name %></td>
                       <td><%= reservation.department %></td>
                       <td class="start-date" data-date="<%= reservation.start_date %>"></td>

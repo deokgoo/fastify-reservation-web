@@ -16,6 +16,7 @@
   background-color: var(--color_olive);
 }
 
+.bg-olive,
 .menu-btn:hover {
   color: white;
   background-color: var(--color_olive);

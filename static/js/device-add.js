@@ -1,6 +1,5 @@
-const $form = document.querySelector('#device-info-form');
+const $btnAdd = document.querySelector('.js-add');
 const $chooseFile = document.querySelector('#chooseFile');
-const $img_url = document.querySelector('[name=img_url]');
 const $show = document.querySelector('.js-show');
 
 const postData = (url, data) => {
@@ -18,19 +17,19 @@ const postData = (url, data) => {
   });
 }
 
-$form.addEventListener('submit', (e) => {
+$btnAdd.addEventListener('click', (e) => {
   e.preventDefault();
 
-  const $name = document.querySelector('[name=name]');
-  const $os = document.querySelector('[name=os]');
-  const $os_version = document.querySelector('[name=os_version]');
+  const $name = document.querySelector('#formControlInputName');
+  const $os = document.querySelector('#formControlInputOS');
+  const $os_version = document.querySelector('#formControlInputOSVersion');
 
   try {
     postData('/api/device', {
       name: $name.value,
       os: $os.value,
       os_version: $os_version.value,
-      img_url: $img_url.value,
+      img_url: $show.src,
     })
     alert('register success');
     location.reload();
@@ -45,11 +44,9 @@ $chooseFile.addEventListener('change', () => {
 
   reader.onload = (evt) => {
     const result = evt.target.result.replace(/\n/g,'<br />');
-    $img_url.value = result;
 
-    $show.src = $img_url.value;
+    $show.src = result;
   };
 
   reader.readAsDataURL(file, 'UTF-8');
 });
-

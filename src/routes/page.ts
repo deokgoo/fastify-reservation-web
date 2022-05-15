@@ -1,5 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { getAllDeviceList, getDeviceById } from '../service/deviceinfoService';
+import { getReservationListBydeviceId } from '../service/resetvationService';
 
 const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: () => void) => {
   // 대여 페이지
@@ -28,9 +29,11 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
       // @ts-ignore
       const { id } = req.params;
       const deviceInfo = await getDeviceById(id);
+      const reservationList = await getReservationListBydeviceId(id);
 
       reply.view("/static/html/reservation.ejs", {
         deviceInfo,
+        reservationList
       });
     }
   );

@@ -11,7 +11,7 @@ interface DeviceInfo {
   os: OS;
   os_version: string;
   img_url: string;
-  isReturn: boolean;
+  is_return: boolean;
 }
 
 export const createDevice = ({ name, os, os_version, img_url }: any) => {
@@ -40,11 +40,16 @@ export const getAllDeviceList = async (os?: OS): Promise<DeviceInfo[]> => {
   for(let i=0;i<deviceInfos.length;i++) {
     const id = deviceInfos[i].id;
     const reservationList = await getReservationListBydeviceId(id);
-    const isReturn = !!reservationList.find(x => x.isReturn === false);
+    const notReturnedInfo = reservationList.find(x => x.is_return === false);
+    const isReturn = !!notReturnedInfo
+    const startDate = notReturnedInfo?.start_date;
+    const endDate = notReturnedInfo?.end_date;
 
     res.push({
       ...deviceInfos[i],
-      isReturn,
+      is_return: isReturn,
+      start_date: startDate,
+      end_date: endDate,
     })
   }
 

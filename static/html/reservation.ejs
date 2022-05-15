@@ -54,6 +54,41 @@
         </div>
       </div>
     </div>
+    <div class="row mt-5">
+      <div class="col-12">
+        <h3 style="margin-left: 30px;">히스토리</h3>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">대여자</th>
+              <th scope="col">부서명</th>
+              <th scope="col">대여 시작 일</th>
+              <th scope="col">반납 예상 일</th>
+              <th scope="col">반납 여부</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% reservationList.forEach(function(reservation) { %>
+              <tr>
+                <th scope="row"><%= reservation.id %></th>
+                <td><%= reservation.name %></td>
+                <td><%= reservation.department %></td>
+                <td class="start-date" data-date="<%= reservation.start_date %>"></td>
+                <td class="end-date" data-date="<%= reservation.end_date %>"></td>
+                <td>
+                  <% if(reservation.is_return == true){ %>
+                    반납 완료
+                  <%} else {%>
+                    대여중
+                  <%} %>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </body>
 </html>

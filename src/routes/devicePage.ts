@@ -1,12 +1,17 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { getAllDeviceList, getDeviceById } from '../service/deviceinfoService';
+import { getReservationListNotReturned } from '../service/resetvationService';
 
 const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: () => void) => {
   // device return 페이지
   fastify.get("/return",
     { preValidation: fastify.auth },
-    async (_, reply) => {      
-      reply.view("/static/html/device-return.ejs");
+    async (_, reply) => {
+      const reservationList = await getReservationListNotReturned();
+
+      reply.view("/static/html/device-return.ejs", {
+        reservationList,
+      });
     }
   );
 
@@ -38,7 +43,7 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     const { id } = req.params;
     const deviceInfo = await getDeviceById(id);
     deviceInfo.img_url;
-    deviceInfo.isReturn;
+    deviceInfo.is_return;
     deviceInfo.os_version;
     deviceInfo.os;
     deviceInfo.img_url;

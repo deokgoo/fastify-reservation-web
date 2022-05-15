@@ -5,6 +5,8 @@ const $fitlerAll = document.querySelector('.js-filter-all');
 const $fitlerAOS = document.querySelector('.js-filter-aos');
 const $fitlerIOS = document.querySelector('.js-filter-ios');
 
+const $$date = document.querySelectorAll('.js-date');
+
 const $$btnReservation = document.querySelectorAll('.js-reservation');
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -42,4 +44,17 @@ $$btnReservation.forEach(x => {
     const id = x.dataset.id;
     location.href = `/reservation/${id}`;
   });
+})
+
+$$date.forEach(x => {
+  const formattedDate = (date) => {
+    const currentDate = new Date(date);
+    const formatedYear = currentDate.getFullYear();
+    const formatedMonth = currentDate.getMonth();
+    const formatedDate = currentDate.getDate();
+
+    return `${formatedYear}.${formatedMonth}.${formatedDate}`;
+  }
+  
+  x.textContent = `(${formattedDate(x.dataset.start)} ~ ${formattedDate(x.dataset.end)})`
 })

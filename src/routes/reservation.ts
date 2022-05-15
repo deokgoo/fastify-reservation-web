@@ -3,6 +3,7 @@ import {
   createReservation,
   getReservationListBydeviceId,
   deleteReservationById,
+  deviceReturnById,
 } from '../service/resetvationService';
 
 const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
@@ -53,6 +54,19 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
 
     reply.status(200).send();
   })
+
+  fastify.post('/return/:deviceInfoId', async (req, reply) => {
+    // @ts-ignore
+    const { deviceInfoId } = req.params;
+    
+    try {
+      await deviceReturnById(deviceInfoId);
+    } catch {
+      reply.status(500).send();
+    }
+    
+    reply.status(201).send();
+  });
 
   done();
 }

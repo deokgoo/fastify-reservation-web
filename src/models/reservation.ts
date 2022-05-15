@@ -19,7 +19,7 @@ const Reservation = (sequelize: Sequelize, options: ModelOptions) => {
       type: DataTypes.STRING(30),
       allowNull: false,
     },
-    isReturn: {
+    is_return: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },

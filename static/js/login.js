@@ -33,6 +33,7 @@ $loginForm.addEventListener('submit', async (e) => {
     throw new Error();
   }).catch((error) => {
     console.warn('Request failed', error);
+    alert('id or password is wrong');
   });
 
   if(token) {

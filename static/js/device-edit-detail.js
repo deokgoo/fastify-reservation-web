@@ -1,4 +1,4 @@
-import { postData, deleteData } from './_fetch';
+import { postData, deleteData } from './_fetch.js';
 
 const $chooseFile = document.querySelector('#chooseFile');
 const $img = document.querySelector('.js-img');
@@ -51,13 +51,13 @@ $btnUpdate.addEventListener('click', async () => {
   }
 })
 
-$btnDelete.addEventListener('click', () => {
+$btnDelete.addEventListener('click', async () => {
   const id = $formControlInputId.value;
   const url = `/api/device/${id}`;
 
   try {
     await deleteData(url);
-    location.reload();
+    location.href = '/device/edit';
   } catch {
     alert('unexpected error');
   }

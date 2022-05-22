@@ -1,4 +1,4 @@
-import { postData } from './_fetch';
+import { postData } from './_fetch.js';
 
 const $btnAdd = document.querySelector('.js-add');
 const $chooseFile = document.querySelector('#chooseFile');

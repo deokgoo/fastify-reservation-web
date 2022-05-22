@@ -1,4 +1,4 @@
-import { deleteData } from './_fetch';
+import { deleteData } from './_fetch.js';
 
 const $editArr = document.querySelectorAll('.js-edit');
 const $deleteArr = document.querySelectorAll('.js-delete');

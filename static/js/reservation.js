@@ -1,4 +1,4 @@
-import { postData } from './_fetch';
+import { postData } from './_fetch.js';
 
 const $btnReservation = document.querySelector('.js-reservation');
 const $btnHistoryBack = document.querySelector('.js-hBack');

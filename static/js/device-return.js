@@ -1,4 +1,4 @@
-import { postData } from './_fetch';
+import { postNoBodyData } from './_fetch.js';
 
 const $$startDate = document.querySelectorAll('.start-date');
 const $$endDate = document.querySelectorAll('.end-date');
@@ -29,7 +29,7 @@ $$btnReturn.forEach(x => {
     const url = `/api/reservation/return/${reservationId}`;
 
     try{
-      await postData(url);
+      await postNoBodyData(url);
     } catch {
       console.warn('error');
     }

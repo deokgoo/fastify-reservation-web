@@ -1,3 +1,5 @@
+import { postData, deleteData } from './_fetch';
+
 const $chooseFile = document.querySelector('#chooseFile');
 const $img = document.querySelector('.js-img');
 const $btnUpdate = document.querySelector('.js-update');
@@ -8,22 +10,6 @@ const $formControlInputId = document.querySelector('#formControlInputId');
 const $formControlInputName = document.querySelector('#formControlInputName');
 const $formControlInputOS = document.querySelector('#formControlInputOS');
 const $formControlInputOSVersion = document.querySelector('#formControlInputOSVersion');
-
-const postData = (url, data) => {
-  console.log(url, data);
-  return fetch(url, {
-    method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    redirect: 'follow',
-    referrer: 'no-referrer',
-    body: JSON.stringify(data),
-  });
-}
 
 $btnBack.addEventListener('click', () => {
   location.href = '/device/edit';
@@ -43,7 +29,7 @@ $chooseFile.addEventListener('change', () => {
 });
 
 $btnUpdate.addEventListener('click', async () => {
-    const id = $formControlInputId.value;
+  const id = $formControlInputId.value;
   const name = $formControlInputName.value;
   const os = $formControlInputOS.value;
   const os_version = $formControlInputOSVersion.value;
@@ -66,6 +52,14 @@ $btnUpdate.addEventListener('click', async () => {
 })
 
 $btnDelete.addEventListener('click', () => {
+  const id = $formControlInputId.value;
+  const url = `/api/device/${id}`;
 
+  try {
+    await deleteData(url);
+    location.reload();
+  } catch {
+    alert('unexpected error');
+  }
 })
 

@@ -1,21 +1,8 @@
+import { postData } from './_fetch';
+
 const $btnAdd = document.querySelector('.js-add');
 const $chooseFile = document.querySelector('#chooseFile');
 const $show = document.querySelector('.js-show');
-
-const postData = (url, data) => {
-  return fetch(url, {
-    method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    redirect: 'follow',
-    referrer: 'no-referrer',
-    body: JSON.stringify(data),
-  });
-}
 
 $btnAdd.addEventListener('click', (e) => {
   e.preventDefault();

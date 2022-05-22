@@ -4,9 +4,7 @@ const BTN_ACTIVE = 'btn-success';
 const $fitlerAll = document.querySelector('.js-filter-all');
 const $fitlerAOS = document.querySelector('.js-filter-aos');
 const $fitlerIOS = document.querySelector('.js-filter-ios');
-
 const $$date = document.querySelectorAll('.js-date');
-
 const $$btnReservation = document.querySelectorAll('.js-reservation');
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -25,6 +23,7 @@ const inActiveClass = ($el) => {
   $el.classList.remove('active');
 }
 
+// filter 구분
 if(params.os === 'aos') {
   activeClass($fitlerAOS);
   inActiveClass($fitlerIOS);

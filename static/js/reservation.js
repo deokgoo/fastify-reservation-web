@@ -1,3 +1,5 @@
+import { postData } from './_fetch';
+
 const $btnReservation = document.querySelector('.js-reservation');
 const $btnHistoryBack = document.querySelector('.js-hBack');
 const $deviceId = document.querySelector('#formControlInputId');
@@ -9,21 +11,6 @@ const $statusNo = document.querySelector('.js-status-no');
 
 const $$startDate = document.querySelectorAll('.start-date');
 const $$endDate = document.querySelectorAll('.end-date');
-
-const postData = (url, data) => {
-  return fetch(url, {
-    method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    redirect: 'follow',
-    referrer: 'no-referrer',
-    body: JSON.stringify(data),
-  });
-}
 
 $btnReservation.addEventListener('click', async (e) => {
   e.preventDefault();

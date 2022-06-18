@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { FastifyInstance } from 'fastify';
 import { 
   createDevice,
@@ -24,10 +25,13 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
 
   fastify.post('', async (req, reply) => {
     // @ts-ignore
-    const { name, os, os_version, img_url } = req.body;
+    const { no, name, os, os_version, img_url } = req.body;
+
+    console.log(chalk.bgBlue(no, name, os));
 
     try {
       await createDevice({
+        no,
         name,
         os,
         os_version,

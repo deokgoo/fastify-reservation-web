@@ -7,6 +7,9 @@ const DeviceInfo = (sequelize: Sequelize, options: ModelOptions) => {
       autoIncrement: true,
       primaryKey: true,
     },
+    no: {
+      type: DataTypes.INTEGER,
+    },
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,

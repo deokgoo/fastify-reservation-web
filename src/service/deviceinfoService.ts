@@ -14,8 +14,9 @@ interface DeviceInfo {
   is_return: boolean;
 }
 
-export const createDevice = ({ name, os, os_version, img_url }: any) => {
+export const createDevice = ({ no, name, os, os_version, img_url }: any) => {
   return deviceInfo.create({
+    no,
     name,
     os,
     os_version,

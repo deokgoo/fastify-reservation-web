@@ -45,6 +45,13 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     }
   );
 
+  // register 페이지
+  fastify.get("/register",
+    async (_, reply) => {
+      reply.view("/static/html/register.ejs");
+    }
+  );
+
   done();
 }
 

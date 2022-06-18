@@ -7,12 +7,14 @@ const $show = document.querySelector('.js-show');
 $btnAdd.addEventListener('click', (e) => {
   e.preventDefault();
 
+  const $no = document.querySelector('#formControlInputNo');
   const $name = document.querySelector('#formControlInputName');
   const $os = document.querySelector('#formControlInputOS');
   const $os_version = document.querySelector('#formControlInputOSVersion');
 
   try {
     postData('/api/device', {
+      no: $no.value,
       name: $name.value,
       os: $os.value,
       os_version: $os_version.value,

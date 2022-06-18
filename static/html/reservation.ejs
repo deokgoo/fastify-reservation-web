@@ -28,9 +28,14 @@
             <div class="col-6">
               <div class="d-flex h-100 justify-content-center align-items-center">
                 <form class="w-50">
-                  <div class="form-group">
-                    <label for="formControlInputId">No</label>
+                  <div class="form-group d-none">
+                    <label for="formControlInputId">Id</label>
                     <input type="text" class="form-control" id="formControlInputId" value="<%= deviceInfo.id %>"
+                      readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="formControlInputNo">No</label>
+                    <input type="text" class="form-control" id="formControlInputNo" value="<%= deviceInfo.no %>"
                       readonly>
                   </div>
                   <div class="form-group mt-3">

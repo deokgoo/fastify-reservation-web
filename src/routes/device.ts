@@ -48,7 +48,7 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
   fastify.post('/:id', async (req, reply) => {
     // @ts-ignore
     const { name, os, os_version, img_url } = req.body;
-    // @ts-ignorex
+    // @ts-ignore
     const { id } = req.params;
 
     try {

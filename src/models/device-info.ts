@@ -9,7 +9,6 @@ const DeviceInfo = (sequelize: Sequelize, options: ModelOptions) => {
     },
     no: {
       type: DataTypes.INTEGER,
-      unique: true,
     },
     name: {
       type: DataTypes.STRING(50),

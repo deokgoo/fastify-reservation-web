@@ -8,7 +8,7 @@ $$startDate.forEach(x => {
   const date = x.dataset.date;
   const currentDate = new Date(date);
   const formatedYear = currentDate.getFullYear();
-  const formatedMonth = currentDate.getMonth();
+  const formatedMonth = currentDate.getMonth() + 1;
   const formatedDate = currentDate.getDate();
   x.textContent = `${formatedYear} ${formatedMonth} ${formatedDate}`
 })
@@ -17,7 +17,7 @@ $$endDate.forEach(x => {
   const date = x.dataset.date;
   const currentDate = new Date(date);
   const formatedYear = currentDate.getFullYear();
-  const formatedMonth = currentDate.getMonth();
+  const formatedMonth = currentDate.getMonth() + 1;
   const formatedDate = currentDate.getDate();
   x.textContent = `${formatedYear} ${formatedMonth} ${formatedDate}`;
 })

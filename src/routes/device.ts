@@ -27,8 +27,6 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
     // @ts-ignore
     const { no, name, os, os_version, img_url } = req.body;
 
-    console.log(chalk.bgBlue(no, name, os));
-
     try {
       await createDevice({
         no,
@@ -38,7 +36,6 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
         img_url,
       });
     } catch(e) {
-      console.warn(e);
       reply.status(500).send();
     }
 
@@ -47,13 +44,16 @@ const deviceRoute = (fastify: FastifyInstance, opt: any, done: () => void) => {
 
   fastify.post('/:id', async (req, reply) => {
     // @ts-ignore
-    const { name, os, os_version, img_url } = req.body;
+    const { no, name, os, os_version, img_url } = req.body;
     // @ts-ignore
     const { id } = req.params;
+
+    console.log(chalk.bgCyan(no, name));
 
     try {
       await updateDevice({
         id,
+        no,
         name,
         os,
         os_version,

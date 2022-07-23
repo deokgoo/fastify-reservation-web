@@ -7,6 +7,7 @@ const $btnDelete = document.querySelector('.js-delete');
 const $btnBack = document.querySelector('.js-hBack');
 
 const $formControlInputId = document.querySelector('#formControlInputId');
+const $formControlInputNo = document.querySelector('#formControlInputNo');
 const $formControlInputName = document.querySelector('#formControlInputName');
 const $formControlInputOS = document.querySelector('#formControlInputOS');
 const $formControlInputOSVersion = document.querySelector('#formControlInputOSVersion');
@@ -30,6 +31,7 @@ $chooseFile.addEventListener('change', () => {
 
 $btnUpdate.addEventListener('click', async () => {
   const id = $formControlInputId.value;
+  const no = $formControlInputNo.value;
   const name = $formControlInputName.value;
   const os = $formControlInputOS.value;
   const os_version = $formControlInputOSVersion.value;
@@ -39,6 +41,7 @@ $btnUpdate.addEventListener('click', async () => {
 
   try {
     await postData(url, {
+      no,
       name,
       os,
       os_version,

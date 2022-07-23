@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import db from '../models';
 import { getReservationListBydeviceId } from './resetvationService';
 
@@ -73,8 +74,9 @@ export const getDevicesByName = (query: string) => {
   })
 }
 
-export const updateDevice = ({ id, name, os, os_version, img_url }: any) => {
+export const updateDevice = ({ id, no, name, os, os_version, img_url }: any) => {
   return deviceInfo.update({
+    no,
     name,
     os,
     os_version,

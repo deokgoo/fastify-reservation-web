@@ -51,7 +51,7 @@
                 <% reservationList.forEach(function(reservation) { %>
                   <tr>
                     <th scope="row"><%= reservation.id %></th>
-                    <td><%= reservation.device_info_id %></td>
+                    <td><%= reservation.device_info.no %></td>
                     <td><%= reservation.name %></td>
                     <td><%= reservation.department %></td>
                     <td class="start-date" data-date="<%= reservation.start_date %>"></td>

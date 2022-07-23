@@ -1,9 +1,10 @@
 import chalk from 'chalk';
 import db from '../models';
 
-const { reservation } = db.models;
+const { reservation, deviceInfo } = db.models;
 
 interface Reservation {
+  [x: string]: unknown;
   device_info_id: string;
   name: string;
   department: string;
@@ -34,7 +35,11 @@ export const getReservationListNotReturned = (): Promise<Reservation[]> => {
   return reservation.findAll({
     where: {
       is_return: false,
-    }
+    },
+    include: [{
+      model: deviceInfo,
+      required: false,
+    }]
   });
 }
 

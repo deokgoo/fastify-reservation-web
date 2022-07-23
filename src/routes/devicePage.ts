@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import { getAllDeviceList, getDeviceById } from '../service/deviceinfoService';
 import { getReservationListNotReturned } from '../service/resetvationService';
@@ -42,11 +43,6 @@ const pageRoute = (fastify: FastifyInstance, opts: FastifyPluginOptions, done: (
     // @ts-ignore
     const { id } = req.params;
     const deviceInfo = await getDeviceById(id);
-    deviceInfo.img_url;
-    deviceInfo.is_return;
-    deviceInfo.os_version;
-    deviceInfo.os;
-    deviceInfo.img_url;
 
     reply.view("/static/html/device-edit-detail.ejs", {
       deviceInfo

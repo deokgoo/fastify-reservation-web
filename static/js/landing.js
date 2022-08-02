@@ -49,7 +49,7 @@ $$date.forEach(x => {
   const formattedDate = (date) => {
     const currentDate = new Date(date);
     const formatedYear = currentDate.getFullYear();
-    const formatedMonth = currentDate.getMonth();
+    const formatedMonth = currentDate.getMonth() + 1;
     const formatedDate = currentDate.getDate();
 
     return `${formatedYear}.${formatedMonth}.${formatedDate}`;

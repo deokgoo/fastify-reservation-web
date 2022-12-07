@@ -16,6 +16,10 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     ports:
       - 3306:3306
   
@@ -23,4 +27,18 @@ services:
     image: adminer
     restart: always
     ports:
+      - 8000:8080
+  
+  node:
+    image: node:16.18-alpine
+    working_dir: /app
+    command: npm start
+    volumes:
+      - ../app:/app
+    ports:
       - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db

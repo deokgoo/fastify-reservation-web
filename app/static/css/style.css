@@ -1,0 +1,50 @@
+:root {
+  --size_btn: 120px;
+  --size_font: 24px;
+  --color_olive: #a6cd48;
+}
+
+.menu-btn {
+  width: var(--size_btn);
+  font-size: var(--size_font);
+  box-shadow: none;
+  border: none;
+  margin: 0 48px;
+}
+
+.menu-btn.active {
+  background-color: var(--color_olive);
+}
+
+.bg-olive,
+.menu-btn:hover {
+  color: white;
+  background-color: var(--color_olive);
+}
+
+.landing__card {
+  min-width: 320px;
+  margin: 20px auto;
+}
+
+table {
+  width: 100%;
+  border-top: 1px solid #444444;
+  border-collapse: collapse;
+}
+th, td {
+  border-bottom: 1px solid #444444;
+  padding: 10px;
+  text-align: center;
+}
+
+.button {
+  background-color: #a6cd48; 
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <title>테스트폰 대여 편집</title>
+</head>
+
+<body>
+  <div class="container-fluid d-flex flex-column align-items-center">
+    <div class="row w-100 justify-content-center">
+      <nav class="navbar navbar-expand navbar-light bg-light">
+        <img src="/static/img/olive_logo.png" alt="logo" width="230px" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-left: 15px;">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/device/return">반납</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/device/edit">편집</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/device/add">추가</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="row mt-5" style="width: 800px">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">No</th>
+            <th scope="col">모델명</th>
+            <th scope="col">OS</th>
+            <th scope="col">편집</th>
+            <th scope="col">삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% allDeviceList.forEach(function(deviceInfo) { %>
+            <tr>
+              <td scope="row" style="width: 80px;"><%= deviceInfo.id %></th>
+              <td scope="row" style="width: 80px;"><%= deviceInfo.no %></th>
+              <td><%= deviceInfo.name %></td>
+              <td style="width: 80px;"><%= deviceInfo.os %></td>
+              <td style="width: 80px">
+                <button class="btn bg-olive js-edit">
+                  편집
+                  <span class="js-edit__id" style="display: none;">
+                    <%= deviceInfo.id %>
+                  </span>
+                </button>
+              </td>
+              <td style="width: 80px">
+                <button class="btn bg-olive js-delete">
+                  삭제
+                  <span class="js-delete__id" style="display: none;">
+                    <%= deviceInfo.id %>
+                  </span>
+                </button>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="module" src="/static/js/device-edit.js"></script>
+</body>
+</html>

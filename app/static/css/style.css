@@ -4,6 +4,10 @@
   --color_olive: #a6cd48;
 }
 
+* {
+  font-family: 'Apple SD Gothic Neo';
+}
+
 .menu-btn {
   width: var(--size_btn);
   font-size: var(--size_font);

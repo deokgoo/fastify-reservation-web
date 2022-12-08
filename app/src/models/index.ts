@@ -14,7 +14,7 @@ interface Db {
 }
 
 const sequelize = new Sequelize('olive_reservation', 'olive', 'olive_password', {
-  host: 'db',
+  host: 'reservation-db',
   dialect: 'mysql',
   dialectModule: mysql2,
 });

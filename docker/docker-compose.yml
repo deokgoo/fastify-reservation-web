@@ -2,10 +2,9 @@
 version: '3.1'
 
 services:
-
-  db:
+  reservation-db:
     platform: linux/amd64
-    image: mysql
+    image: hub.oliveyoung.co.kr/reservation-test-device/mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -23,14 +22,14 @@ services:
     ports:
       - 3306:3306
   
-  adminer:
-    image: adminer
+  reservation-adminer:
+    image: hub.oliveyoung.co.kr/reservation-test-device/adminer
     restart: always
     ports:
       - 8000:8080
   
-  node:
-    image: node:16.18-alpine
+  reservation-node:
+    image: hub.oliveyoung.co.kr/reservation-test-device/node-alpine-16
     working_dir: /app
     command: npm start
     volumes:
@@ -38,7 +37,7 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      db:
+      reservation-db:
         condition: service_healthy
     links:
-      - db
+      - reservation-db
